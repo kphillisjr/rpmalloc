@@ -373,6 +373,13 @@ struct span_t {
 };
 _Static_assert(sizeof(span_t) <= SPAN_HEADER_SIZE, "span size mismatch");
 
+struct super_span_t {
+	//! Span data for each span
+	span_t span[DEFAULT_SPAN_MAP_COUNT];
+	//! List of unused spans available (span_count in each span denotes size of each)
+	span_t* reserved;
+};
+
 struct heap_class_t {
 	//! Free list of active span
 	void*        free_list;
